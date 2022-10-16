@@ -16,6 +16,8 @@ class InputHandler {
 
     if ((event.key === "ArrowUp" || event.key === "ArrowDown") && key === -1) {
       this.game.actions.push(event.key);
+    } else if (event.key === " ") {
+      this.game.player.firePrimary();
     }
   }
 

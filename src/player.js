@@ -1,3 +1,5 @@
+import { Projectile } from "./projectile.js";
+
 class Player {
   constructor(game) {
     this.game = game;
@@ -16,6 +18,16 @@ class Player {
 
     this.speedY = 0;
     this.maxSpeed = 3;
+
+    // Data
+
+    /*
+    Holds all currently active projectiles. This is stored
+    on the player object rather than the game object because
+    the player generates projectiles as part of their
+    tech-infused biology.
+    */
+    this.projectiles = [];
   }
 
   update() {
@@ -28,10 +40,37 @@ class Player {
     }
 
     this.y += this.speedY;
+
+    // Handle projectiles.
+
+    this.projectiles.forEach((projectile) => {
+      projectile.update();
+    });
+
+    // Creates a new projectiles array, leaving out
+    // any of the ones that should have disappeared.
+    // All projectiles start off with dissipated being
+    // false. So the "not dissipated" would mean
+    // true.
+
+    this.projectiles = this.projectiles.filter(
+      (projectile) => !projectile.dissipated,
+    );
   }
 
   draw(context) {
+    context.fillStyle = "black";
     context.fillRect(this.x, this.y, this.width, this.height);
+
+    // Draw projectiles.
+
+    this.projectiles.forEach((projectile) => {
+      projectile.draw(context);
+    });
+  }
+
+  firePrimary() {
+    this.projectiles.push(new Projectile(this.game, this.x, this.y));
   }
 }
 
