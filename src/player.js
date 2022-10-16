@@ -11,6 +11,14 @@ class Player {
 
     this.x = 20;
     this.y = 100;
+
+    // Movement
+
+    this.speedY = 0;
+  }
+
+  update() {
+    this.y += this.speedY;
   }
 
   draw(context) {

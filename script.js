@@ -8,5 +8,15 @@ window.addEventListener("load", () => {
   viewport.height = 500;
 
   const game = new Game(viewport.width, viewport.height);
-  game.draw(context);
+
+  function gameLoop() {
+    context.clearRect(0, 0, viewport.width, viewport.height);
+
+    game.update();
+    game.draw(context);
+
+    requestAnimationFrame(gameLoop);
+  }
+
+  gameLoop();
 });

@@ -12,6 +12,10 @@ class Game {
     this.player = new Player(this);
   }
 
+  update() {
+    this.player.update();
+  }
+
   draw(context) {
     this.player.draw(context);
   }
