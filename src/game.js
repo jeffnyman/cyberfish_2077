@@ -1,3 +1,4 @@
+import { InputHandler } from "./input.js";
 import { Player } from "./player.js";
 
 class Game {
@@ -7,9 +8,15 @@ class Game {
     this.width = width;
     this.height = height;
 
-    // State
+    // Objects
 
     this.player = new Player(this);
+    this.input = new InputHandler(this);
+
+    // State
+
+    // Keeps track of all actions (key press events) by the player.
+    this.actions = [];
   }
 
   update() {
