@@ -12,6 +12,10 @@ class Player {
     this.x = 20;
     this.y = 100;
   }
+
+  draw(context) {
+    context.fillRect(this.x, this.y, this.width, this.height);
+  }
 }
 
 export { Player };

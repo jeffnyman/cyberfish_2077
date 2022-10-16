@@ -11,6 +11,10 @@ class Game {
 
     this.player = new Player(this);
   }
+
+  draw(context) {
+    this.player.draw(context);
+  }
 }
 
 export { Game };

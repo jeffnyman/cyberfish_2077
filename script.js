@@ -8,4 +8,5 @@ window.addEventListener("load", () => {
   viewport.height = 500;
 
   const game = new Game(viewport.width, viewport.height);
+  game.draw(context);
 });
