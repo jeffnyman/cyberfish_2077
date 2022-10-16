@@ -15,9 +15,18 @@ class Player {
     // Movement
 
     this.speedY = 0;
+    this.maxSpeed = 3;
   }
 
   update() {
+    if (this.game.actions.includes("ArrowUp")) {
+      this.speedY = -this.maxSpeed;
+    } else if (this.game.actions.includes("ArrowDown")) {
+      this.speedY = this.maxSpeed;
+    } else {
+      this.speedY = 0;
+    }
+
     this.y += this.speedY;
   }
 
