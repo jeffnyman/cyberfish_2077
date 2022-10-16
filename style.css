@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#viewport {
+  border: 5px solid black;
+  background: #4d79bc;
+
+  /* Keep canvas centered. */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* Scale canvas to always be fully visible. */
+  max-width: 100%;
+  max-height: 100%;
+}
