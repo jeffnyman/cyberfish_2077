@@ -28,6 +28,8 @@ class Player {
     tech-infused biology.
     */
     this.projectiles = [];
+
+    this.ammo = 20;
   }
 
   update() {
@@ -70,7 +72,10 @@ class Player {
   }
 
   firePrimary() {
-    this.projectiles.push(new Projectile(this.game, this.x, this.y));
+    if (this.ammo > 0) {
+      this.projectiles.push(new Projectile(this.game, this.x, this.y));
+      this.ammo--;
+    }
   }
 }
 
