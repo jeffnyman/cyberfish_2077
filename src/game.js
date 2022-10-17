@@ -20,7 +20,7 @@ class Game {
 
     this.bounty = 0;
     this.winningBounty = 10;
-    this.gameOver = false;
+    this.huntOver = false;
     this.huntTime = 0;
     this.huntTimeLimit = 5000;
 
@@ -37,12 +37,12 @@ class Game {
   }
 
   update(deltaTime) {
-    if (!this.gameOver) {
+    if (!this.huntOver) {
       this.huntTime += deltaTime;
     }
 
     if (this.huntTime > this.huntTimeLimit) {
-      this.gameOver = true;
+      this.huntOver = true;
     }
 
     this.player.update(deltaTime);
@@ -81,12 +81,12 @@ class Game {
           if (enemy.armor <= 0) {
             enemy.destroyed = true;
 
-            if (!this.gameOver) {
+            if (!this.huntOver) {
               this.bounty += enemy.bounty;
             }
 
             if (this.bounty > this.winningBounty) {
-              this.gameOver = true;
+              this.huntOver = true;
             }
           }
         }
@@ -96,7 +96,7 @@ class Game {
     this.enemies = this.enemies.filter((enemy) => !enemy.outOfPlay);
     this.enemies = this.enemies.filter((enemy) => !enemy.destroyed);
 
-    if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
+    if (this.enemyTimer > this.enemyInterval && !this.huntOver) {
       this.addEnemy();
       this.enemyTimer = 0;
     } else {

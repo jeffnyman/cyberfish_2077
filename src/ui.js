@@ -40,7 +40,7 @@ class UserInterface {
 
     context.fillStyle = "yellow";
 
-    if (this.game.gameOver) {
+    if (this.game.huntOver) {
       context.textAlign = "center";
       context.fillStyle = "white";
 
