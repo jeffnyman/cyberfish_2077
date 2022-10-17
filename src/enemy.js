@@ -13,6 +13,7 @@ class Enemy {
     // Conditions
 
     this.outOfPlay = false;
+    this.destroyed = false;
   }
 
   update() {
