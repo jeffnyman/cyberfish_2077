@@ -58,6 +58,13 @@ class Game {
       if (this.checkCollision(this.player, enemy)) {
         enemy.destroyed = true;
       }
+
+      this.player.projectiles.forEach((projectile) => {
+        if (this.checkCollision(projectile, enemy)) {
+          projectile.collided = true;
+          enemy.destroyed = true;
+        }
+      });
     });
 
     this.enemies = this.enemies.filter((enemy) => !enemy.outOfPlay);

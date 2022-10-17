@@ -24,6 +24,7 @@ class Projectile {
     // Conditions
 
     this.dissipated = false;
+    this.collided = false;
   }
 
   update() {

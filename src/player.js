@@ -88,6 +88,14 @@ class Player {
     this.projectiles = this.projectiles.filter(
       (projectile) => !projectile.dissipated,
     );
+
+    // The same thing is done for projectiles that have
+    // hit an enemy. In this case, the particles are
+    // indicated by collided rather than dissipated.
+
+    this.projectiles = this.projectiles.filter(
+      (projectile) => !projectile.collided,
+    );
   }
 
   handleAmmo(deltaTime) {
