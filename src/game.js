@@ -69,28 +69,8 @@ class Game {
     this.enemies.forEach((enemy) => {
       enemy.update();
 
-      if (this.checkCollision(this.player, enemy)) {
-        enemy.destroyed = true;
-      }
-
-      this.player.projectiles.forEach((projectile) => {
-        if (this.checkCollision(projectile, enemy)) {
-          enemy.armor--;
-          projectile.collided = true;
-
-          if (enemy.armor <= 0) {
-            enemy.destroyed = true;
-
-            if (!this.huntOver) {
-              this.bounty += enemy.bounty;
-            }
-
-            if (this.bounty > this.winningBounty) {
-              this.huntOver = true;
-            }
-          }
-        }
-      });
+      this.checkEnemyCollision(enemy);
+      this.checkProjectileCollision(enemy);
     });
 
     this.enemies = this.enemies.filter((enemy) => !enemy.outOfPlay);
@@ -111,6 +91,33 @@ class Game {
       rect1.y < rect2.y + rect2.height &&
       rect1.height + rect1.y > rect2.y
     );
+  }
+
+  checkEnemyCollision(enemy) {
+    if (this.checkCollision(this.player, enemy)) {
+      enemy.destroyed = true;
+    }
+  }
+
+  checkProjectileCollision(enemy) {
+    this.player.projectiles.forEach((projectile) => {
+      if (this.checkCollision(projectile, enemy)) {
+        enemy.armor--;
+        projectile.collided = true;
+
+        if (enemy.armor <= 0) {
+          enemy.destroyed = true;
+
+          if (!this.huntOver) {
+            this.bounty += enemy.bounty;
+          }
+
+          if (this.bounty > this.winningBounty) {
+            this.huntOver = true;
+          }
+        }
+      }
+    });
   }
 }
 
