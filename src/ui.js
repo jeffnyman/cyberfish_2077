@@ -10,9 +10,14 @@ class UserInterface {
   }
 
   draw(context) {
-    // Display Ammo
-
     context.fillStyle = this.color;
+    context.font = this.fontSize + "px " + this.fontFamily;
+
+    // Display Bounty
+
+    context.fillText("Bounty: " + this.game.bounty, 20, 40);
+
+    // Display Ammo
 
     for (let i = 0; i < this.game.player.ammo; i++) {
       context.fillRect(20 + 10 * i, 50, 3, 20);

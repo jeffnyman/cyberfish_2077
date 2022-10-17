@@ -18,6 +18,10 @@ class Game {
 
     // State
 
+    this.bounty = 0;
+    this.winningBounty = 10;
+    this.gameOver = false;
+
     // Keeps track of all actions (key press events) by the player.
     this.actions = [];
 
@@ -66,6 +70,11 @@ class Game {
 
           if (enemy.armor <= 0) {
             enemy.destroyed = true;
+            this.bounty += enemy.bounty;
+
+            if (this.bounty > this.winningBounty) {
+              this.gameOver = true;
+            }
           }
         }
       });
@@ -74,7 +83,7 @@ class Game {
     this.enemies = this.enemies.filter((enemy) => !enemy.outOfPlay);
     this.enemies = this.enemies.filter((enemy) => !enemy.destroyed);
 
-    if (this.enemyTimer > this.enemyInterval) {
+    if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
       this.addEnemy();
       this.enemyTimer = 0;
     } else {

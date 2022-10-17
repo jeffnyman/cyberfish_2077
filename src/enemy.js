@@ -18,6 +18,7 @@ class Enemy {
     // State
 
     this.armor = 5;
+    this.bounty = this.armor;
   }
 
   update() {
@@ -32,6 +33,10 @@ class Enemy {
   draw(context) {
     context.fillStyle = "red";
     context.fillRect(this.x, this.y, this.width, this.height);
+
+    context.fillStyle = "cyan";
+    context.font = "30px Helveetica";
+    context.fillText(this.armor, this.x, this.y);
   }
 }
 
