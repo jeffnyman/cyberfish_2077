@@ -49,33 +49,8 @@ class Player {
 
     this.y += this.speedY;
 
-    // Handle projectiles.
-
-    this.projectiles.forEach((projectile) => {
-      projectile.update();
-    });
-
-    // Creates a new projectiles array, leaving out
-    // any of the ones that should have disappeared.
-    // All projectiles start off with dissipated being
-    // false. So the "not dissipated" would mean
-    // true.
-
-    this.projectiles = this.projectiles.filter(
-      (projectile) => !projectile.dissipated,
-    );
-
-    // Handle ammo.
-
-    if (this.ammoTimer > this.ammoInterval) {
-      if (this.ammo < this.maxAmmo) {
-        this.ammo++;
-      }
-
-      this.ammoTimer = 0;
-    } else {
-      this.ammoTimer += deltaTime;
-    }
+    this.handleProjectiles();
+    this.handleAmmo(deltaTime);
   }
 
   draw(context) {
@@ -96,6 +71,40 @@ class Player {
       );
 
       this.ammo--;
+    }
+  }
+
+  handleProjectiles() {
+    this.projectiles.forEach((projectile) => {
+      projectile.update();
+    });
+
+    // Creates a new projectiles array, leaving out
+    // any of the ones that should have disappeared.
+    // All projectiles start off with dissipated being
+    // false. So the "not dissipated" would mean
+    // true.
+
+    this.projectiles = this.projectiles.filter(
+      (projectile) => !projectile.dissipated,
+    );
+  }
+
+  handleAmmo(deltaTime) {
+    // ammoTimer = when limit is reached, event is trigged
+    // ammoInternal = the limit that timer needs to reach
+    // The goal is to replenish ammo based on some interval.
+    // This will happen if the ammo is not currently at the
+    // maximum amount of ammo.
+
+    if (this.ammoTimer > this.ammoInterval) {
+      if (this.ammo < this.maxAmmo) {
+        this.ammo++;
+      }
+
+      this.ammoTimer = 0;
+    } else {
+      this.ammoTimer += deltaTime;
     }
   }
 }
