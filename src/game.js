@@ -33,20 +33,22 @@ class Game {
   update(deltaTime) {
     this.player.update(deltaTime);
 
+    this.moveEnemy(deltaTime);
+
     // Handle enemy movement.
 
-    this.enemies.forEach((enemy) => {
-      enemy.update();
-    });
+    // this.enemies.forEach((enemy) => {
+    //   enemy.update();
+    // });
 
-    this.enemies = this.enemies.filter((enemy) => !enemy.outOfPlay);
+    // this.enemies = this.enemies.filter((enemy) => !enemy.outOfPlay);
 
-    if (this.enemyTimer > this.enemyInterval) {
-      this.addEnemy();
-      this.enemyTimer = 0;
-    } else {
-      this.enemyTimer += deltaTime;
-    }
+    // if (this.enemyTimer > this.enemyInterval) {
+    //   this.addEnemy();
+    //   this.enemyTimer = 0;
+    // } else {
+    //   this.enemyTimer += deltaTime;
+    // }
   }
 
   draw(context) {
@@ -62,6 +64,21 @@ class Game {
 
   addEnemy() {
     this.enemies.push(new Angler1(this));
+  }
+
+  moveEnemy(deltaTime) {
+    this.enemies.forEach((enemy) => {
+      enemy.update();
+    });
+
+    this.enemies = this.enemies.filter((enemy) => !enemy.outOfPlay);
+
+    if (this.enemyTimer > this.enemyInterval) {
+      this.addEnemy();
+      this.enemyTimer = 0;
+    } else {
+      this.enemyTimer += deltaTime;
+    }
   }
 }
 
