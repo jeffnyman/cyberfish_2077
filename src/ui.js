@@ -29,7 +29,16 @@ class UserInterface {
       context.fillRect(20 + 10 * i, 50, 3, 20);
     }
 
+    // Display Timer
+
+    context.fillStyle = "white";
+
+    const formattedTime = (this.game.huntTime * 0.001).toFixed(1);
+    context.fillText("Hunt Timer: " + formattedTime, 20, 100);
+
     // Display game over messages
+
+    context.fillStyle = "yellow";
 
     if (this.game.gameOver) {
       context.textAlign = "center";

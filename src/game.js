@@ -21,6 +21,8 @@ class Game {
     this.bounty = 0;
     this.winningBounty = 10;
     this.gameOver = false;
+    this.huntTime = 0;
+    this.huntTimeLimit = 5000;
 
     // Keeps track of all actions (key press events) by the player.
     this.actions = [];
@@ -35,6 +37,14 @@ class Game {
   }
 
   update(deltaTime) {
+    if (!this.gameOver) {
+      this.huntTime += deltaTime;
+    }
+
+    if (this.huntTime > this.huntTimeLimit) {
+      this.gameOver = true;
+    }
+
     this.player.update(deltaTime);
 
     this.moveEnemy(deltaTime);
