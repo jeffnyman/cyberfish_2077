@@ -80,7 +80,10 @@ class Game {
 
           if (enemy.armor <= 0) {
             enemy.destroyed = true;
-            this.bounty += enemy.bounty;
+
+            if (!this.gameOver) {
+              this.bounty += enemy.bounty;
+            }
 
             if (this.bounty > this.winningBounty) {
               this.gameOver = true;
