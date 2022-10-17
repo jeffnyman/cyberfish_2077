@@ -61,8 +61,12 @@ class Game {
 
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
+          enemy.armor--;
           projectile.collided = true;
-          enemy.destroyed = true;
+
+          if (enemy.armor <= 0) {
+            enemy.destroyed = true;
+          }
         }
       });
     });

@@ -14,6 +14,10 @@ class Enemy {
 
     this.outOfPlay = false;
     this.destroyed = false;
+
+    // State
+
+    this.armor = 5;
   }
 
   update() {
