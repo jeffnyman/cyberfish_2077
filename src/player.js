@@ -30,9 +30,15 @@ class Player {
     this.projectiles = [];
 
     this.ammo = 20;
+    this.maxAmmo = 50;
+
+    // Mechanics
+
+    this.ammoTimer = 0;
+    this.ammoInterval = 500;
   }
 
-  update() {
+  update(deltaTime) {
     if (this.game.actions.includes("ArrowUp")) {
       this.speedY = -this.maxSpeed;
     } else if (this.game.actions.includes("ArrowDown")) {
@@ -58,6 +64,18 @@ class Player {
     this.projectiles = this.projectiles.filter(
       (projectile) => !projectile.dissipated,
     );
+
+    // Handle ammo.
+
+    if (this.ammoTimer > this.ammoInterval) {
+      if (this.ammo < this.maxAmmo) {
+        this.ammo++;
+      }
+
+      this.ammoTimer = 0;
+    } else {
+      this.ammoTimer += deltaTime;
+    }
   }
 
   draw(context) {

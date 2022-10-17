@@ -19,8 +19,8 @@ class Game {
     this.actions = [];
   }
 
-  update() {
-    this.player.update();
+  update(deltaTime) {
+    this.player.update(deltaTime);
   }
 
   draw(context) {
