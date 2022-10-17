@@ -34,21 +34,6 @@ class Game {
     this.player.update(deltaTime);
 
     this.moveEnemy(deltaTime);
-
-    // Handle enemy movement.
-
-    // this.enemies.forEach((enemy) => {
-    //   enemy.update();
-    // });
-
-    // this.enemies = this.enemies.filter((enemy) => !enemy.outOfPlay);
-
-    // if (this.enemyTimer > this.enemyInterval) {
-    //   this.addEnemy();
-    //   this.enemyTimer = 0;
-    // } else {
-    //   this.enemyTimer += deltaTime;
-    // }
   }
 
   draw(context) {
