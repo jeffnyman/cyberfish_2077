@@ -18,6 +18,7 @@ class Game {
 
     // State
 
+    this.speed = 1;
     this.bounty = 0;
     this.winningBounty = 10;
     this.huntOver = false;
