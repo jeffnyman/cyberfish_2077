@@ -62,6 +62,14 @@ class Player {
 
     this.y += this.speedY;
 
+    // Handle vertical boundaries.
+
+    if (this.y > this.game.height - this.height * 0.5) {
+      this.y = this.game.height - this.height * 0.5;
+    } else if (this.y < -this.height * 0.5) {
+      this.y = -this.height * 0.5;
+    }
+
     this.handleProjectiles();
     this.handleAmmo(deltaTime);
 
