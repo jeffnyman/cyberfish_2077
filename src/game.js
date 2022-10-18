@@ -1,3 +1,4 @@
+import { Background } from "./background.js";
 import { Angler1 } from "./enemy.js";
 import { InputHandler } from "./input.js";
 import { Player } from "./player.js";
@@ -12,6 +13,7 @@ class Game {
 
     // Objects
 
+    this.background = new Background(this);
     this.player = new Player(this);
     this.input = new InputHandler(this);
     this.ui = new UserInterface(this);
@@ -46,12 +48,19 @@ class Game {
       this.huntOver = true;
     }
 
+    // Update layers 1, 2 and 3.
+    this.background.update();
+
+    // Update layer 4.
+    this.background.layer4.update();
+
     this.player.update(deltaTime);
 
     this.moveEnemy(deltaTime);
   }
 
   draw(context) {
+    this.background.draw(context);
     this.player.draw(context);
     this.ui.draw(context);
 
@@ -60,6 +69,12 @@ class Game {
     this.enemies.forEach((enemy) => {
       enemy.draw(context);
     });
+
+    // Draw bottom-most layer. This is to make sure
+    // that this layer appears in front of all other
+    // game objects.
+
+    this.background.layer4.draw(context);
   }
 
   addEnemy() {

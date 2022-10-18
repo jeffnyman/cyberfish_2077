@@ -22,13 +22,17 @@ class Layer {
     // can scroll again.
     if (this.x <= -this.width) {
       this.x = 0;
-    } else {
-      this.x -= this.game.speed * this.speedModifier;
     }
+
+    this.x -= this.game.speed * this.speedModifier;
   }
 
   draw(context) {
     context.drawImage(this.image, this.x, this.y);
+
+    // Draw second image that serves as a gap filler for when
+    // the main set of layer images moves off the screen.
+    context.drawImage(this.image, this.x + this.width, this.y);
   }
 }
 
