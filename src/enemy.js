@@ -15,6 +15,12 @@ class Enemy {
     this.outOfPlay = false;
     this.destroyed = false;
 
+    // Animation
+
+    this.frameX = 0; // cycle through sprite sheet horizontally
+    this.frameY = 0; // determine row of sprite sheet to cycle through
+    this.maxFrame = 37; // maximum frames to cycle through
+
     // State
 
     this.armor = 5;
@@ -28,15 +34,43 @@ class Enemy {
     if (this.x + this.width < 0) {
       this.outOfPlay = true;
     }
+
+    // Sprite animation.
+
+    if (this.frameX < this.maxFrame) {
+      this.frameX++;
+    } else {
+      this.frameX = 0;
+    }
   }
 
   draw(context) {
-    context.fillStyle = "red";
-    context.fillRect(this.x, this.y, this.width, this.height);
+    // The next two lines were the blank rectangle approach before
+    // we had a sprite.
+    // context.fillStyle = "red";
+    // context.fillRect(this.x, this.y, this.width, this.height);
 
-    context.fillStyle = "cyan";
-    context.font = "30px Helveetica";
-    context.fillText(this.armor, this.x, this.y);
+    if (this.game.debug) {
+      context.strokeRect(this.x, this.y, this.width, this.height);
+    }
+
+    context.drawImage(
+      this.image,
+      this.frameX * this.width,
+      this.frameY * this.height,
+      this.width,
+      this.height,
+      this.x,
+      this.y,
+      this.width,
+      this.height,
+    );
+
+    if (this.game.debug) {
+      context.fillStyle = "cyan";
+      context.font = "30px Helveetica";
+      context.fillText(this.armor, this.x, this.y);
+    }
   }
 }
 
@@ -46,12 +80,20 @@ class Angler1 extends Enemy {
 
     // Dimensions
 
-    this.width = 228 * 0.2;
-    this.height = 169 * 0.2;
+    this.width = 228;
+    this.height = 169;
 
     // Location
 
     this.y = Math.random() * (this.game.height * 0.9 - this.height);
+
+    // Representation
+
+    this.image = document.getElementById("angler1");
+
+    // Animation
+
+    this.frameY = Math.floor(Math.random() * 3);
   }
 }
 
