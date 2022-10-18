@@ -23,7 +23,11 @@ class UserInterface {
 
     // Display Ammo
 
-    context.fillStyle = "yellow";
+    if (this.game.player.powerUp) {
+      context.fillStyle = "red";
+    } else {
+      context.fillStyle = "yellow";
+    }
 
     for (let i = 0; i < this.game.player.ammo; i++) {
       context.fillRect(20 + 10 * i, 50, 3, 20);
