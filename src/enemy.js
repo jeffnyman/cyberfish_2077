@@ -28,7 +28,12 @@ class Enemy {
   }
 
   update() {
-    this.x += this.speedX;
+    // This calculation takes into account the game scrolling speed
+    // when calculating enemy positions. This way in case there are
+    // dynamic events that change game speed. In those cases, the
+    // enemies will always be correctly positioned in relation to
+    // the scrolling world.
+    this.x += this.speedX - this.game.speed;
 
     // Check if the enemy has moved off the screen.
     if (this.x + this.width < 0) {
