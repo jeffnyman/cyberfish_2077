@@ -19,6 +19,15 @@ class Player {
     this.speedY = 0;
     this.maxSpeed = 3;
 
+    // Animation
+
+    this.frameX = 0; // cycle through sprite sheet horizontally
+    this.frameY = 0; // determine row of sprite sheet to cycle through
+
+    // Representation
+
+    this.image = document.getElementById("player");
+
     // Data
 
     /*
@@ -56,6 +65,18 @@ class Player {
   draw(context) {
     context.fillStyle = "black";
     context.fillRect(this.x, this.y, this.width, this.height);
+
+    context.drawImage(
+      this.image,
+      this.frameX * this.width,
+      this.frameY * this.height,
+      this.width,
+      this.height,
+      this.x,
+      this.y,
+      this.width,
+      this.height,
+    );
 
     // Draw projectiles.
 
