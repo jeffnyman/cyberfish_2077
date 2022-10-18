@@ -130,4 +130,33 @@ class Angler2 extends Enemy {
   }
 }
 
-export { Angler1, Angler2 };
+class LuckyFish extends Enemy {
+  constructor(game) {
+    super(game);
+
+    // Dimensions
+
+    this.width = 99;
+    this.height = 95;
+
+    // Location
+
+    this.y = Math.random() * (this.game.height * 0.9 - this.height);
+
+    // Representation
+
+    this.image = document.getElementById("lucky");
+
+    // Animation
+
+    this.frameY = Math.floor(Math.random() * 2);
+
+    // State
+
+    this.armor = 3;
+    this.bounty = 15;
+    this.type = "lucky";
+  }
+}
+
+export { Angler1, Angler2, LuckyFish };

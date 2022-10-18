@@ -1,5 +1,5 @@
 import { Background } from "./background.js";
-import { Angler1, Angler2 } from "./enemy.js";
+import { Angler1, Angler2, LuckyFish } from "./enemy.js";
 import { InputHandler } from "./input.js";
 import { Player } from "./player.js";
 import { UserInterface } from "./ui.js";
@@ -81,10 +81,12 @@ class Game {
   addEnemy() {
     const randomize = Math.random();
 
-    if (randomize < 0.5) {
+    if (randomize < 0.3) {
       this.enemies.push(new Angler1(this));
-    } else {
+    } else if (randomize < 0.6) {
       this.enemies.push(new Angler2(this));
+    } else {
+      this.enemies.push(new LuckyFish(this));
     }
   }
 
