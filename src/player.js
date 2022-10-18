@@ -23,6 +23,7 @@ class Player {
 
     this.frameX = 0; // cycle through sprite sheet horizontally
     this.frameY = 0; // determine row of sprite sheet to cycle through
+    this.maxFrame = 37; // maximum frames to cycle through
 
     // Representation
 
@@ -60,6 +61,14 @@ class Player {
 
     this.handleProjectiles();
     this.handleAmmo(deltaTime);
+
+    // Sprite animation
+
+    if (this.frameX < this.maxFrame) {
+      this.frameX++;
+    } else {
+      this.frameX = 0;
+    }
   }
 
   draw(context) {
