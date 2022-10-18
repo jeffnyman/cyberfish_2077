@@ -1,5 +1,5 @@
 import { Background } from "./background.js";
-import { Angler1 } from "./enemy.js";
+import { Angler1, Angler2 } from "./enemy.js";
 import { InputHandler } from "./input.js";
 import { Player } from "./player.js";
 import { UserInterface } from "./ui.js";
@@ -26,7 +26,7 @@ class Game {
     this.winningBounty = 10;
     this.huntOver = false;
     this.huntTime = 0;
-    this.huntTimeLimit = 5000;
+    this.huntTimeLimit = 15000;
 
     // Keeps track of all actions (key press events) by the player.
     this.actions = [];
@@ -79,7 +79,13 @@ class Game {
   }
 
   addEnemy() {
-    this.enemies.push(new Angler1(this));
+    const randomize = Math.random();
+
+    if (randomize < 0.5) {
+      this.enemies.push(new Angler1(this));
+    } else {
+      this.enemies.push(new Angler2(this));
+    }
   }
 
   moveEnemy(deltaTime) {

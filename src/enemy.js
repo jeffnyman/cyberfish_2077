@@ -102,4 +102,27 @@ class Angler1 extends Enemy {
   }
 }
 
-export { Angler1 };
+class Angler2 extends Enemy {
+  constructor(game) {
+    super(game);
+
+    // Dimensions
+
+    this.width = 213;
+    this.height = 165;
+
+    // Location
+
+    this.y = Math.random() * (this.game.height * 0.9 - this.height);
+
+    // Representation
+
+    this.image = document.getElementById("angler2");
+
+    // Animation
+
+    this.frameY = Math.floor(Math.random() * 2);
+  }
+}
+
+export { Angler1, Angler2 };
