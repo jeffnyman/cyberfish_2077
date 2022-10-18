@@ -20,11 +20,6 @@ class Enemy {
     this.frameX = 0; // cycle through sprite sheet horizontally
     this.frameY = 0; // determine row of sprite sheet to cycle through
     this.maxFrame = 37; // maximum frames to cycle through
-
-    // State
-
-    this.armor = 5;
-    this.bounty = this.armor;
   }
 
   update() {
@@ -99,6 +94,11 @@ class Angler1 extends Enemy {
     // Animation
 
     this.frameY = Math.floor(Math.random() * 3);
+
+    // State
+
+    this.armor = 2;
+    this.bounty = this.armor;
   }
 }
 
@@ -122,6 +122,11 @@ class Angler2 extends Enemy {
     // Animation
 
     this.frameY = Math.floor(Math.random() * 2);
+
+    // State
+
+    this.armor = 3;
+    this.bounty = this.armor;
   }
 }
 
