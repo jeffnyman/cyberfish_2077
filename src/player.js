@@ -72,8 +72,14 @@ class Player {
   }
 
   draw(context) {
-    context.fillStyle = "black";
-    context.fillRect(this.x, this.y, this.width, this.height);
+    // The next two lines were the blank rectangle approach before
+    // we had a sprite.
+    // context.fillStyle = "black";
+    // context.fillRect(this.x, this.y, this.width, this.height);
+
+    if (this.game.debug) {
+      context.strokeRect(this.x, this.y, this.width, this.height);
+    }
 
     context.drawImage(
       this.image,

@@ -18,6 +18,8 @@ class InputHandler {
       this.game.actions.push(event.key);
     } else if (event.key === " ") {
       this.game.player.firePrimary();
+    } else if (event.key === "d") {
+      this.game.debug = !this.game.debug;
     }
   }
 
