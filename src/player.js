@@ -125,6 +125,18 @@ class Player {
 
       this.ammo--;
     }
+
+    if (this.powerUp) {
+      this.fireSecondary();
+    }
+  }
+
+  fireSecondary() {
+    if (this.ammo > 0) {
+      this.projectiles.push(
+        new Projectile(this.game, this.x + 80, this.y + 175),
+      );
+    }
   }
 
   handleProjectiles() {
