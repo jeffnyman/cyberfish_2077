@@ -25,6 +25,10 @@ class Projectile {
 
     this.dissipated = false;
     this.collided = false;
+
+    // Representation
+
+    this.image = document.getElementById("projectile");
   }
 
   update() {
@@ -39,8 +43,12 @@ class Projectile {
   }
 
   draw(context) {
-    context.fillStyle = "yellow";
-    context.fillRect(this.x, this.y, this.width, this.height);
+    // The next two lines were the blank rectangle approach before
+    // we had a sprite.
+    // context.fillStyle = "yellow";
+    // context.fillRect(this.x, this.y, this.width, this.height);
+
+    context.drawImage(this.image, this.x, this.y);
   }
 }
 
