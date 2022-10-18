@@ -121,6 +121,17 @@ class Game {
   checkEnemyCollision(enemy) {
     if (this.checkCollision(this.player, enemy)) {
       enemy.destroyed = true;
+
+      // Check if this was a "lucky" enemy. If so,
+      // the player will enter their special mode
+      // of extra power. The player should only
+      // attempt colliding with the lucky fish,
+      // not the others.
+      if (enemy.type === "lucky") {
+        this.player.enterPowerUp();
+      } else {
+        this.bounty--;
+      }
     }
   }
 

@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
   const viewport = document.getElementById("viewport");
   const context = viewport.getContext("2d");
 
-  viewport.width = 900;
+  viewport.width = 1500;
   viewport.height = 500;
 
   const game = new Game(viewport.width, viewport.height);

@@ -41,6 +41,9 @@ class Player {
 
     this.ammo = 20;
     this.maxAmmo = 50;
+    this.powerUp = false;
+    this.powerUpTimer = 0;
+    this.powerUpLimit = 10000;
 
     // Mechanics
 
@@ -68,6 +71,20 @@ class Player {
       this.frameX++;
     } else {
       this.frameX = 0;
+    }
+
+    // Handle powerup.
+
+    if (this.powerUp) {
+      if (this.powerUpTimer > this.powerUpLimit) {
+        this.powerUpTimer = 0;
+        this.powerUp = false;
+        this.frameY = 0;
+      } else {
+        this.powerUpTimer += deltaTime;
+        this.frameY = 1;
+        this.ammo += 0.1;
+      }
     }
   }
 
@@ -150,6 +167,17 @@ class Player {
     } else {
       this.ammoTimer += deltaTime;
     }
+  }
+
+  enterPowerUp() {
+    // This next line allows for a situation where the player
+    // collides with a lucky fish, enters powerup, and then
+    // immediately collides with another lucky fish. They
+    // always get the timer from the most recent fish.
+    this.powerUpTimer = 0;
+
+    this.powerUp = true;
+    this.ammo = this.maxAmmo;
   }
 }
 
