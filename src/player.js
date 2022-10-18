@@ -98,6 +98,14 @@ class Player {
       context.strokeRect(this.x, this.y, this.width, this.height);
     }
 
+    // Draw projectiles.
+
+    this.projectiles.forEach((projectile) => {
+      projectile.draw(context);
+    });
+
+    // Draw player.
+
     context.drawImage(
       this.image,
       this.frameX * this.width,
@@ -109,12 +117,6 @@ class Player {
       this.width,
       this.height,
     );
-
-    // Draw projectiles.
-
-    this.projectiles.forEach((projectile) => {
-      projectile.draw(context);
-    });
   }
 
   firePrimary() {
