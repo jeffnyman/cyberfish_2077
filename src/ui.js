@@ -5,7 +5,7 @@ class UserInterface {
     // Text rendering.
 
     this.fontSize = 25;
-    this.fontFamily = "Helvetica";
+    this.fontFamily = "Bangers";
   }
 
   draw(context) {
@@ -59,18 +59,18 @@ class UserInterface {
         message2 = "Better luck on the next hunt!";
       }
 
-      context.font = "50px " + this.fontFamily;
+      context.font = "70px " + this.fontFamily;
       context.fillText(
         message1,
         this.game.width * 0.5,
-        this.game.height * 0.5 - 40,
+        this.game.height * 0.5 - 20,
       );
 
       context.font = "25px " + this.fontFamily;
       context.fillText(
         message2,
         this.game.width * 0.5,
-        this.game.height * 0.5 + 40,
+        this.game.height * 0.5 + 20,
       );
     }
 
