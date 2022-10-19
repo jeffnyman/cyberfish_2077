@@ -78,17 +78,27 @@ class Particle {
   }
 
   draw(context) {
+    context.save();
+
+    // Move rotation center point to the coordinates of the
+    // particle.
+
+    context.translate(this.x, this.y);
+    context.rotate(this.angle);
+
     context.drawImage(
       this.image,
       this.frameX * this.spriteSize,
       this.frameY * this.spriteSize,
       this.spriteSize,
       this.spriteSize,
-      this.x,
-      this.y,
+      this.size * -0.5,
+      this.size * -0.5,
       this.size,
       this.size,
     );
+
+    context.restore();
   }
 }
 
