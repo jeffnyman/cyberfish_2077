@@ -22,7 +22,7 @@ class Game {
     // State
 
     this.speed = 1;
-    this.debug = true;
+    this.debug = false;
     this.bounty = 0;
     this.winningBounty = 10;
     this.huntOver = false;
