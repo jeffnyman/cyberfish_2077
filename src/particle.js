@@ -28,7 +28,7 @@ class Particle {
     this.gravity = 0.5;
     this.angle = 0; // angle of rotation
     this.va = Math.random() * 0.2 - 0.1; // speed of rotation; radians per animation frame
-    this.bottomBounceBoundary = Math.random() * 100 + 60; // margin from which particles will bounce
+    this.bottomBounceBoundary = Math.random() * 80 + 60; // margin from which particles will bounce
 
     // Conditions
 
