@@ -66,8 +66,8 @@ class Game {
 
   draw(context) {
     this.background.draw(context);
-    this.player.draw(context);
     this.ui.draw(context);
+    this.player.draw(context);
 
     // Draw particles.
 
