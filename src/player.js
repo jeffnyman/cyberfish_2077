@@ -199,7 +199,10 @@ class Player {
     this.powerUpTimer = 0;
 
     this.powerUp = true;
-    this.ammo = this.maxAmmo;
+
+    if (this.ammo < this.maxAmmo) {
+      this.ammo = this.maxAmmo;
+    }
   }
 }
 
