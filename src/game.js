@@ -1,6 +1,7 @@
 import { Background } from "./background.js";
 import { Angler1, Angler2, LuckyFish } from "./enemy.js";
 import { InputHandler } from "./input.js";
+import { Particle } from "./particle.js";
 import { Player } from "./player.js";
 import { UserInterface } from "./ui.js";
 
@@ -34,6 +35,9 @@ class Game {
     // Keeps track of all active enemies on the level.
     this.enemies = [];
 
+    // Keeps track of all particle objects on the level.
+    this.particles = [];
+
     // Mechanics
 
     this.enemyTimer = 0;
@@ -65,6 +69,10 @@ class Game {
     this.player.draw(context);
     this.ui.draw(context);
 
+    // Draw particles.
+
+    this.particles.forEach((particle) => particle.draw(context));
+
     // Draw enemies.
 
     this.enemies.forEach((enemy) => {
@@ -91,6 +99,10 @@ class Game {
   }
 
   moveEnemy(deltaTime) {
+    // Handle particles
+    this.particles.forEach((particle) => particle.update());
+    this.particles = this.particles.filter((particle) => !particle.outOfPlay);
+
     this.enemies.forEach((enemy) => {
       enemy.update();
 
@@ -122,6 +134,17 @@ class Game {
     if (this.checkCollision(this.player, enemy)) {
       enemy.destroyed = true;
 
+      // Generate particles from collision.
+      for (let i = 0; i < 10; i++) {
+        this.particles.push(
+          new Particle(
+            this,
+            enemy.x + enemy.width * 0.5,
+            enemy.y + enemy.height * 0.5,
+          ),
+        );
+      }
+
       // Check if this was a "lucky" enemy. If so,
       // the player will enter their special mode
       // of extra power. The player should only
@@ -140,6 +163,15 @@ class Game {
       if (this.checkCollision(projectile, enemy)) {
         enemy.armor--;
         projectile.collided = true;
+
+        // Generate single particle from collision.
+        this.particles.push(
+          new Particle(
+            this,
+            enemy.x + enemy.width * 0.5,
+            enemy.y + enemy.height * 0.5,
+          ),
+        );
 
         if (enemy.armor <= 0) {
           enemy.destroyed = true;
