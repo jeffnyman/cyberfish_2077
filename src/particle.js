@@ -28,10 +28,12 @@ class Particle {
     this.gravity = 0.5;
     this.angle = 0; // angle of rotation
     this.va = Math.random() * 0.2 - 0.1; // speed of rotation; radians per animation frame
+    this.bottomBounceBoundary = Math.random() * 100 + 60; // margin from which particles will bounce
 
     // Conditions
 
     this.outOfPlay = false;
+    this.bounced = false;
 
     // Representation
 
@@ -58,6 +60,20 @@ class Particle {
     // canvas or the game screen scrolling past the particle.
     if (this.y > this.game.height + this.size || this.x < 0 - this.size) {
       this.outOfPlay = true;
+    }
+
+    // Handle particles bouncing. The speedY will be increased
+    // a bit for the bounce, causing the particle to move up,
+    // but the gravity value will keep being applied. So the
+    // value of speedY will eventually reach zero and into the
+    // positive numbers. This causes the particle to eventually
+    // go out of play.
+    if (
+      this.y > this.game.height - this.bottomBounceBoundary &&
+      !this.bounced
+    ) {
+      this.bounced = true;
+      this.speedY *= -0.5;
     }
   }
 
