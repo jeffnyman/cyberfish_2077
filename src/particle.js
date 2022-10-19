@@ -53,7 +53,7 @@ class Particle {
     // start falling down.
     this.angle += this.va;
     this.speedY += this.gravity;
-    this.x -= this.speedX;
+    this.x -= this.speedX + this.game.speed;
     this.y += this.speedY;
 
     // Handle the particle falling down past the edge of the
