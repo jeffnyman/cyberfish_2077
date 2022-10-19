@@ -33,7 +33,7 @@ class Particle {
     // Conditions
 
     this.outOfPlay = false;
-    this.bounced = false;
+    this.bounced = 0;
 
     // Representation
 
@@ -70,10 +70,10 @@ class Particle {
     // go out of play.
     if (
       this.y > this.game.height - this.bottomBounceBoundary &&
-      !this.bounced
+      this.bounced < 2
     ) {
-      this.bounced = true;
-      this.speedY *= -0.5;
+      this.bounced++;
+      this.speedY *= -0.9;
     }
   }
 
