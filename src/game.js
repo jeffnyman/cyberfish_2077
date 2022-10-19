@@ -176,6 +176,17 @@ class Game {
         if (enemy.armor <= 0) {
           enemy.destroyed = true;
 
+          // Generate particles from collision.
+          for (let i = 0; i < 10; i++) {
+            this.particles.push(
+              new Particle(
+                this,
+                enemy.x + enemy.width * 0.5,
+                enemy.y + enemy.height * 0.5,
+              ),
+            );
+          }
+
           if (!this.huntOver) {
             this.bounty += enemy.bounty;
           }
