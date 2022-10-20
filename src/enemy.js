@@ -192,4 +192,38 @@ class HiveWhale extends Enemy {
   }
 }
 
-export { Angler1, Angler2, LuckyFish, HiveWhale };
+class Drone extends Enemy {
+  constructor(game, x, y) {
+    super(game);
+
+    // Dimensions
+
+    this.width = 115;
+    this.height = 95;
+
+    // Location
+
+    this.x = x;
+    this.y = y;
+
+    // Representation
+
+    this.image = document.getElementById("drone");
+
+    // Animation
+
+    this.frameY = Math.floor(Math.random() * 2);
+
+    // State
+
+    this.armor = 3;
+    this.bounty = this.armor;
+    this.type = "drone";
+
+    // Movement
+
+    this.speedX = Math.random() * -4.2 - 0.5;
+  }
+}
+
+export { Angler1, Angler2, LuckyFish, HiveWhale, Drone };

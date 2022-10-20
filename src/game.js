@@ -1,5 +1,5 @@
 import { Background } from "./background.js";
-import { Angler1, Angler2, LuckyFish, HiveWhale } from "./enemy.js";
+import { Angler1, Angler2, LuckyFish, HiveWhale, Drone } from "./enemy.js";
 import { InputHandler } from "./input.js";
 import { Particle } from "./particle.js";
 import { Player } from "./player.js";
@@ -187,6 +187,19 @@ class Game {
                 enemy.y + enemy.height * 0.5,
               ),
             );
+          }
+
+          // Generate drones from hive enemy.
+          if (enemy.type === "hive") {
+            for (let i = 0; i < 5; i++) {
+              this.enemies.push(
+                new Drone(
+                  this,
+                  enemy.x + Math.random() * enemy.width,
+                  enemy.y + Math.random() * enemy.height * 0.5,
+                ),
+              );
+            }
           }
 
           if (!this.huntOver) {
