@@ -85,7 +85,7 @@ class Angler1 extends Enemy {
 
     // Location
 
-    this.y = Math.random() * (this.game.height * 0.9 - this.height);
+    this.y = Math.random() * (this.game.height * 0.95 - this.height);
 
     // Representation
 
@@ -113,7 +113,7 @@ class Angler2 extends Enemy {
 
     // Location
 
-    this.y = Math.random() * (this.game.height * 0.9 - this.height);
+    this.y = Math.random() * (this.game.height * 0.95 - this.height);
 
     // Representation
 
@@ -141,7 +141,7 @@ class LuckyFish extends Enemy {
 
     // Location
 
-    this.y = Math.random() * (this.game.height * 0.9 - this.height);
+    this.y = Math.random() * (this.game.height * 0.95 - this.height);
 
     // Representation
 
@@ -170,7 +170,7 @@ class HiveWhale extends Enemy {
 
     // Location
 
-    this.y = Math.random() * (this.game.height * 0.9 - this.height);
+    this.y = Math.random() * (this.game.height * 0.95 - this.height);
 
     // Representation
 
