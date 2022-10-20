@@ -1,5 +1,6 @@
 import { Background } from "./background.js";
 import { Angler1, Angler2, LuckyFish, HiveWhale, Drone } from "./enemy.js";
+import { SmokeExplosion } from "./explosion.js";
 import { InputHandler } from "./input.js";
 import { Particle } from "./particle.js";
 import { Player } from "./player.js";
@@ -37,6 +38,9 @@ class Game {
 
     // Keeps track of all particle objects on the level.
     this.particles = [];
+
+    // Keeps track of all active explosion objects on the level.
+    this.explosions = [];
 
     // Mechanics
 
@@ -79,6 +83,12 @@ class Game {
       enemy.draw(context);
     });
 
+    // Draw explosions.
+
+    this.explosions.forEach((explosion) => {
+      explosion.draw(context);
+    });
+
     // Draw bottom-most layer. This is to make sure
     // that this layer appears in front of all other
     // game objects.
@@ -100,10 +110,32 @@ class Game {
     }
   }
 
+  addExplosion(enemy) {
+    const randomize = Math.random();
+
+    if (randomize < 1) {
+      this.explosions.push(
+        new SmokeExplosion(
+          this,
+          enemy.x + enemy.width * 0.5,
+          enemy.y + enemy.height * 0.5,
+        ),
+      );
+    }
+
+    console.log(this.explosions);
+  }
+
   moveEnemy(deltaTime) {
     // Handle particles
     this.particles.forEach((particle) => particle.update());
     this.particles = this.particles.filter((particle) => !particle.outOfPlay);
+
+    // Explosions from enemies.
+    this.explosions.forEach((explosion) => explosion.update(deltaTime));
+    this.explosions = this.explosions.filter(
+      (explosion) => !explosion.outOfPlay,
+    );
 
     this.enemies.forEach((enemy) => {
       enemy.update();
@@ -135,6 +167,9 @@ class Game {
   checkEnemyCollision(enemy) {
     if (this.checkCollision(this.player, enemy)) {
       enemy.destroyed = true;
+
+      // Generate explosion from collision.
+      this.addExplosion(enemy);
 
       // Generate particles from collision.
       for (let i = 0; i < enemy.armor; i++) {
@@ -188,6 +223,10 @@ class Game {
               ),
             );
           }
+
+          // Generate explosion from collision.
+
+          this.addExplosion(enemy);
 
           // Generate drones from hive enemy.
           if (enemy.type === "hive") {

@@ -35,8 +35,8 @@ window.addEventListener("load", () => {
 
     context.clearRect(0, 0, viewport.width, viewport.height);
 
-    game.update(deltaTime);
     game.draw(context);
+    game.update(deltaTime);
 
     requestAnimationFrame(gameLoop);
   }
