@@ -159,4 +159,37 @@ class LuckyFish extends Enemy {
   }
 }
 
-export { Angler1, Angler2, LuckyFish };
+class HiveWhale extends Enemy {
+  constructor(game) {
+    super(game);
+
+    // Dimensions
+
+    this.width = 400;
+    this.height = 227;
+
+    // Location
+
+    this.y = Math.random() * (this.game.height * 0.9 - this.height);
+
+    // Representation
+
+    this.image = document.getElementById("hivewhale");
+
+    // Animation
+
+    this.frameY = 0;
+
+    // State
+
+    this.armor = 15;
+    this.bounty = this.armor;
+    this.type = "hive";
+
+    // Movement
+
+    this.speedX = Math.random() * -1.2 - 0.2;
+  }
+}
+
+export { Angler1, Angler2, LuckyFish, HiveWhale };

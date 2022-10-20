@@ -1,5 +1,5 @@
 import { Background } from "./background.js";
-import { Angler1, Angler2, LuckyFish } from "./enemy.js";
+import { Angler1, Angler2, LuckyFish, HiveWhale } from "./enemy.js";
 import { InputHandler } from "./input.js";
 import { Particle } from "./particle.js";
 import { Player } from "./player.js";
@@ -93,6 +93,8 @@ class Game {
       this.enemies.push(new Angler1(this));
     } else if (randomize < 0.6) {
       this.enemies.push(new Angler2(this));
+    } else if (randomize < 0.8) {
+      this.enemies.push(new HiveWhale(this));
     } else {
       this.enemies.push(new LuckyFish(this));
     }
