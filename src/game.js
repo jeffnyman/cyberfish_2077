@@ -137,7 +137,7 @@ class Game {
       enemy.destroyed = true;
 
       // Generate particles from collision.
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < enemy.armor; i++) {
         this.particles.push(
           new Particle(
             this,
@@ -179,7 +179,7 @@ class Game {
           enemy.destroyed = true;
 
           // Generate particles from collision.
-          for (let i = 0; i < 10; i++) {
+          for (let i = 0; i < enemy.armor; i++) {
             this.particles.push(
               new Particle(
                 this,
